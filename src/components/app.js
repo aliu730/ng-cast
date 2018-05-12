@@ -1,11 +1,11 @@
-angular.module('video-player', [])
+angular.module('video-player')
   .component('app', { 
     controller: function() {
       this.videolist = window.exampleVideoData;
-      this.currentvideo = window.exampleVideoData[0];
+      this.currentVideo = window.exampleVideoData[0];
       console.log(this.currentVideo);
-      this.onclick = function() {
-        
+      this.playvideo = function() {
+        // console.log("clicked");
       };
     },
     templateUrl: 'src/templates/app.html'

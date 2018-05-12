@@ -4,6 +4,7 @@ angular.module('video-player')
     },
     bindings: {
       videos: '<',
+      playvideo: '<',
     },
     templateUrl: 'src/templates/videoList.html' 
   });
