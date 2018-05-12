@@ -1,21 +1,18 @@
 angular.module('video-player')
   .component('app', { 
-    controller: function() {
+    controller: function(youTube) {
       this.videolist = window.exampleVideoData;
       this.currentVideo = window.exampleVideoData[0];
-      console.log(this.currentVideo);
       this.playvideo = (video) => {
         this.currentVideo = video;
-        //console.log(index)
       },
-      this.onsearch = (options) => {
-        // options: {
-        //   query: query,
-        //   maxResults: 5,
-        //   key: window.YOUTUBE_API_KEY,
-        //   videoEmbeddable: true,
-        // };
-      };
+      this.onsearch = _.debounce((querystring) => {
+        youTube.search(querystring, (data) => {
+          this.currentVideo = data.data.items[0];
+          this.videolist = data.data.items;
+        });
+      }, 500);
     },
     templateUrl: 'src/templates/app.html'
   });
+  
